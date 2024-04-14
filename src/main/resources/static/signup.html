@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 </head>
 <body>
     <header>
@@ -23,7 +24,33 @@
         </div>
     </header>
     <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Sign up</h2>
+                    <form class="form">
+                        <div class="form-group">
+                            <label for="firstnameInput">Firstname</label>
+                            <input id="firstnameInput" type="text">
+                            <label id="firstnameError" for="firstnameInput"></label><br/>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="lastnameInput">Lastname</label>
+                            <input id="lastnameInput" type="text">
+                            <label id="lastnameError" for="lastnameInput"></label><br/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailInput">Email</label>
+                            <input id="emailInput" type="text">
+                            <label id="emailError" for="emailInput"></label><br/>
+                        </div>
+                    </form>
+                    <button class="btn btn-primary" onclick="registerUser()">Register</button> <br/> <br/>
+                </div>
+            </div>
+        </div>
     </main>
     <footer>
 

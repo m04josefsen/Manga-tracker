@@ -1,5 +1,9 @@
+let inputCounter = 0;
+
 function search() {
+
     const title = $("#searchInput").val();
+
     const baseURL = "https://api.mangadex.org";
 
     const searchURL = `${baseURL}/manga?title=${encodeURIComponent(title)}&includes[]=cover_art`;
@@ -16,6 +20,7 @@ function search() {
 
             //Makes it so previous searches are removed
             $("#results").html("");
+
             //Lists the different mangas separately when searching for "title"
             mangaData.forEach(manga => {
                 console.log(manga);
@@ -56,4 +61,48 @@ function formatData(manga, coverURL) {
     print += "<p>" + manga.attributes.description.en + "</p>";
     print += "</div>";
     $("#results").append(print);
+}
+
+function registerUser() {
+    const user = {
+        firstname : ("#firstnameInput").val(),
+        lastname : ("#lastnameInput").val(),
+        email : ("#emailInput").val()
+    };
+
+    inputCounter = 0;
+
+    stringValidation(user.firstname, "firstname");
+    stringValidation(user.lastname, "lastname");
+    emailValidation(user.email);
+
+    document.getElementById("firstnameInput").value = "";
+    document.getElementById("lastnameError").value = "";
+    document.getElementById("emailInput").value = "";
+}
+
+function stringValidation(string, type) {
+    let namePattern = /^[a-zA-ZæøåÆØÅ]+$/;
+
+    if(!namePattern.test(string)) {
+        let out = "You have to write a valid name";
+        out = out.fontcolor("RED");
+        document.getElementById(type + "Error").innerHTML = out;
+    }
+    else {
+        inputCounter++;
+    }
+}
+
+function emailValidation(email) {
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailPattern.test(email)) {
+        let out = "You have to write a valid email";
+        out = out.fontcolor("RED");
+        document.getElementById("emailError").innerHTML = out;
+    }
+    else {
+        inputCounter++;
+    }
 }
