@@ -76,9 +76,15 @@ function registerUser() {
     stringValidation(user.lastname, "lastname");
     emailValidation(user.email);
 
-    document.getElementById("firstnameInput").value = "";
-    document.getElementById("lastnameError").value = "";
-    document.getElementById("emailInput").value = "";
+    if(teller === 3) {
+        $.post("addUser", user, function() {
+
+        });
+
+        document.getElementById("firstnameInput").value = "";
+        document.getElementById("lastnameError").value = "";
+        document.getElementById("emailInput").value = "";
+    }
 }
 
 function stringValidation(string, type) {
