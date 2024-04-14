@@ -6,7 +6,15 @@ CREATE TABLE User (
     PRIMARY KEY (userid)
 );
 
-CREATE TABLE Ranking (
-    /* UserID skal være foreign key, MÅ OGSÅ HA HJELPE TABELL MELLOM RANKING OG USER */
+/* Når en manga er lagt til i en read liste så blir den lagt til i data basen?? */
+CREATE TABLE Manga(
+    mangaid INT AUTO_INCREMENT NOT NULL
+);
 
+/* Helping table between User and Manga */
+CREATE TABLE Read(
+    userid INT NOT NULL,
+    mangaid INT NOT NULL,
+    FOREIGN KEY (userid) REFERENCES User(userid),
+    FOREIGN KEY (mangaid) REFERENCES Manga(mangaid)
 );
