@@ -1,4 +1,4 @@
-CREATE TABLE User (
+CREATE TABLE `User` (
     userid INT AUTO_INCREMENT PRIMARY KEY,
     firstname VARCHAR(255) NOT NULL,
     lastname VARCHAR(255) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE Read(
     userid INT NOT NULL,
     mangaid INT NOT NULL,
     rating DECIMAL(3,2) NOT NULL,
-    FOREIGN KEY (userid) REFERENCES User(userid),
+    FOREIGN KEY (userid) REFERENCES `User`(userid),
     FOREIGN KEY (mangaid) REFERENCES Manga(mangaid),
     PRIMARY KEY (userid, mangaid)
 );
