@@ -1,22 +1,14 @@
 package org.bookmangatracker;
 
 public class Manga {
-    private String author;
     private String title;
+    private int releaseYear;
 
     public Manga(){}
 
-    public Manga(String author, String title) {
-        this.author = author;
+    public Manga(String title, int releaseYear) {
         this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
+        this.releaseYear = releaseYear;
     }
 
     public String getTitle() {
@@ -25,5 +17,13 @@ public class Manga {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
     }
 }

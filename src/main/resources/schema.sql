@@ -9,8 +9,8 @@ CREATE TABLE User (
 /* Når en manga er lagt til i en read liste så blir den lagt til i data basen?? */
 CREATE TABLE Manga(
     mangaid INT AUTO_INCREMENT NOT NULL,
-    author VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
+    releaseYear INT NOT NULL,
     PRIMARY KEY (mangaid)
 );
 
