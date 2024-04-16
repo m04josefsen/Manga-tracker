@@ -21,8 +21,8 @@ public class HomeController {
 
     //Account
     @PostMapping("/addAccount")
-    public void addUser(Account account) {
-        accountRep.addUser(account);
+    public void addAccount(Account account) {
+        accountRep.addAccount(account);
     }
 
     @GetMapping("/getAccount")
