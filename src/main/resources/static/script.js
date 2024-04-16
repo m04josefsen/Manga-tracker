@@ -77,7 +77,7 @@ function registerAccount() {
     emailValidation(account.email);
 
     if(inputCounter === 3) {
-        $.post("addUser", user, function() {
+        $.post("addAccount", account, function() {
 
         });
 
@@ -137,7 +137,7 @@ function addRead(inManga) {
                     const currentMangaid = m.mangaid;
                     console.log(currentMangaid);
                     const read = {
-                        userid : user.userid,
+                        userid : account.userid,
                         mangaid : currentMangaid,
                         rating : 0
                     }
