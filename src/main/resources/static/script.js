@@ -65,9 +65,9 @@ function formatData(manga, coverURL) {
 
 function registerUser() {
     const user = {
-        firstname : ("#firstnameInput").val(),
-        lastname : ("#lastnameInput").val(),
-        email : ("#emailInput").val()
+        firstname : $("#firstnameInput").val(),
+        lastname : $("#lastnameInput").val(),
+        email : $("#emailInput").val()
     };
 
     inputCounter = 0;
@@ -76,14 +76,18 @@ function registerUser() {
     stringValidation(user.lastname, "lastname");
     emailValidation(user.email);
 
-    if(teller === 3) {
+    if(inputCounter === 3) {
         $.post("addUser", user, function() {
 
         });
 
         document.getElementById("firstnameInput").value = "";
-        document.getElementById("lastnameError").value = "";
+        document.getElementById("lastnameInput").value = "";
         document.getElementById("emailInput").value = "";
+
+        document.getElementById("emailError").innerHTML = "";
+        document.getElementById("firstnameError").innerHTML = "";
+        document.getElementById("lastnameError").innerHTML = "";
     }
 }
 
