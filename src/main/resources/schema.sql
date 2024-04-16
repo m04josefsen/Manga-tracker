@@ -1,25 +1,22 @@
 CREATE TABLE User (
-    userid INT AUTO_INCREMENT NOT NULL,
+    userid INT AUTO_INCREMENT PRIMARY KEY,
     firstname VARCHAR(255) NOT NULL,
     lastname VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    PRIMARY KEY (userid)
+    email VARCHAR(320) NOT NULL UNIQUE
 );
 
-/* Når en manga er lagt til i en read liste så blir den lagt til i data basen?? */
 CREATE TABLE Manga(
-    mangaid INT AUTO_INCREMENT NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    releaseYear INT NOT NULL,
-    PRIMARY KEY (mangaid)
+                      mangaid INT AUTO_INCREMENT PRIMARY KEY,
+                      title VARCHAR(255) NOT NULL,
+                      releaseYear INT NOT NULL
 );
 
 /* Helping table between User and Manga */
 CREATE TABLE Read(
-    userid INT NOT NULL,
-    mangaid INT NOT NULL,
-    rating FLOAT NOT NULL,
-    FOREIGN KEY (userid) REFERENCES User(userid),
-    FOREIGN KEY (mangaid) REFERENCES Manga(mangaid),
-    PRIMARY KEY (userid, mangaid)
+                     userid INT NOT NULL,
+                     mangaid INT NOT NULL,
+                     rating DECIMAL(3,2) NOT NULL,
+                     FOREIGN KEY (userid) REFERENCES User(userid),
+                     FOREIGN KEY (mangaid) REFERENCES Manga(mangaid),
+                     PRIMARY KEY (userid, mangaid)
 );
