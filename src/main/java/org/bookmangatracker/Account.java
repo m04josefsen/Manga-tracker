@@ -1,13 +1,13 @@
 package org.bookmangatracker;
 
-public class User {
+public class Account {
     private String firstName;
     private String lastName;
     private String email;
 
-    public User(){}
+    public Account(){}
 
-    public User(String firstName, String lastName, String email) {
+    public Account(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

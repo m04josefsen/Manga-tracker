@@ -11,7 +11,7 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    UserRepository userRep;
+    AccountRepository accountRep;
 
     @Autowired
     MangaRepository mangaRep;
@@ -19,15 +19,15 @@ public class HomeController {
     @Autowired
     ReadRepository readRep;
 
-    //User
-    @PostMapping("/addUser")
-    public void addUser(User user) {
-        userRep.addUser(user);
+    //Account
+    @PostMapping("/addAccount")
+    public void addUser(Account account) {
+        accountRep.addUser(account);
     }
 
-    @GetMapping("getUser")
-    public List<User> getUser() {
-        return userRep.getUser();
+    @GetMapping("/getAccount")
+    public List<Account> getAccount() {
+        return accountRep.getAccount();
     }
 
     //Manga
@@ -36,7 +36,7 @@ public class HomeController {
         mangaRep.addManga(manga);
     }
 
-    @GetMapping("/getManga")
+    @GetMapping("/getMangas")
     public List<Manga> getMangas() {
         return mangaRep.getMangas();
     }

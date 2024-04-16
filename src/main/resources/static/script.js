@@ -57,14 +57,14 @@ function formatData(manga, coverURL) {
     let print = "<div class='manga-entry'>";
     print += "<div class='image-container'><img src='" + coverURL + "'></div>";
     print += "<h2>" + manga.attributes.title.en +  "</h2>";
-    print += "<button>Add to read</button>";
+    print += "<button onclick='addRead()'>Add to read</button>";
     print += "<p>" + manga.attributes.description.en + "</p>";
     print += "</div>";
     $("#results").append(print);
 }
 
-function registerUser() {
-    const user = {
+function registerAccount() {
+    const account = {
         firstname : $("#firstnameInput").val(),
         lastname : $("#lastnameInput").val(),
         email : $("#emailInput").val()
@@ -72,9 +72,9 @@ function registerUser() {
 
     inputCounter = 0;
 
-    stringValidation(user.firstname, "firstname");
-    stringValidation(user.lastname, "lastname");
-    emailValidation(user.email);
+    stringValidation(account.firstname, "firstname");
+    stringValidation(account.lastname, "lastname");
+    emailValidation(account.email);
 
     if(inputCounter === 3) {
         $.post("addUser", user, function() {
@@ -115,4 +115,34 @@ function emailValidation(email) {
     else {
         inputCounter++;
     }
+}
+
+function addRead(inManga) {
+    const manga = {
+        title : inManga.attributes.title.en,
+        releaseYear : inManga.attributes.year
+    };
+
+    $.post("addManga", manga, function() {
+        //HER KAN JEG HA EN POST INNI SOM LEGGER TIL READ IGJEN
+    });
+
+    $.get("getAccount", function(account) {
+        $.get("getMangas", function(mangas) {
+            //mangas is the List<> of mangas
+            //m is each manga in mangas
+            //først må jeg loope gjennom manga listen, så sjekke til title = den. så bruke den manga sin id
+            for(m of mangas) {
+                if(m.attributes.title.en === manga.title) {
+                    const currentMangaid = m.mangaid;
+                    console.log(currentMangaid);
+                    const read = {
+                        userid : user.userid,
+                        mangaid : currentMangaid,
+                        rating : 0
+                    }
+                }
+            }
+        });
+    });
 }
