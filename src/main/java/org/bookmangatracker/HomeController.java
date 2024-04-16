@@ -8,16 +8,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 
     @Autowired
-    UserRepository repository;
+    UserRepository userRep;
+
+    @Autowired
+    ReadRepository readRep;
+
+    @Autowired
+    MangaRepository mangaRep;
 
     @PostMapping("/addUser")
     public void addUser(User user) {
-        repository.addUser(user);
+        userRep.addUser(user);
     }
 
     @PostMapping("/addRead")
     public void addRead(Read read) {
-
+        readRep.addRead(read);
     }
 
 }
