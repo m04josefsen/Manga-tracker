@@ -1,16 +1,26 @@
 package org.bookmangatracker;
 
 public class Account {
+    private int userid;
     private String firstName;
     private String lastName;
     private String email;
 
     public Account(){}
 
-    public Account(String firstName, String lastName, String email) {
+    public Account(int userid, String firstName, String lastName, String email) {
+        this.userid = userid;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
     public String getFirstName() {
