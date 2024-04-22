@@ -34,8 +34,6 @@ public class HomeController {
     @PostMapping("/addManga")
     public void addManga(Manga manga) {
         mangaRep.addManga(manga);
-        System.out.println(manga.getTitle());
-        System.out.println(manga.getReleaseYear());
     }
 
     @GetMapping("/getMangas")
