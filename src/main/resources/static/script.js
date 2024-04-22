@@ -63,6 +63,7 @@ function formatData(manga, coverURL) {
     $("#results").append(print);
 }
 
+
 function registerAccount() {
     const account = {
         firstname : $("#firstnameInput").val(),
@@ -77,17 +78,36 @@ function registerAccount() {
     emailValidation(account.email);
 
     if(inputCounter === 3) {
-        $.post("addAccount", account, function() {
+        console.log(account.firstname);
+        console.log(account.lastname);
+        console.log(account.email);
 
+        console.log("break");
+
+        console.log($("#firstnameInput").val());
+        console.log($("#lastnameInput").val());
+        console.log($("#emailInput").val());
+
+        $.post("addAccount", account, function(response) {
+            // Handle the response from the server
+            console.log("Account added successfully:", response);
+
+
+            document.getElementById("firstnameInput").value = "";
+            document.getElementById("lastnameInput").value = "";
+            document.getElementById("emailInput").value = "";
+
+            document.getElementById("emailError").innerHTML = "";
+            document.getElementById("firstnameError").innerHTML = "";
+            document.getElementById("lastnameError").innerHTML = "";
+
+
+
+            inputCounter = 0;
+        }).fail(function(xhr, status, error) {
+            // Handle errors
+            console.error("Error adding account:", error);
         });
-
-        document.getElementById("firstnameInput").value = "";
-        document.getElementById("lastnameInput").value = "";
-        document.getElementById("emailInput").value = "";
-
-        document.getElementById("emailError").innerHTML = "";
-        document.getElementById("firstnameError").innerHTML = "";
-        document.getElementById("lastnameError").innerHTML = "";
     }
 }
 
@@ -131,7 +151,6 @@ function addRead(inManga) {
         $.get("getMangas", function(mangas) {
             //mangas is the List<> of mangas
             //m is each manga in mangas
-            //først må jeg loope gjennom manga listen, så sjekke til title = den. så bruke den manga sin id
             for(m of mangas) {
                 if(m.attributes.title.en === manga.title) {
                     const currentMangaid = m.mangaid;

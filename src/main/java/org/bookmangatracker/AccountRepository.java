@@ -15,7 +15,7 @@ public class AccountRepository {
 
     public void addAccount(Account account) {
         String sql = "INSERT INTO Account (firstname, lastname, email) VALUES (?, ?, ?)";
-        db.update(sql, account.getFirstName(), account.getLastName(), account.getEmail());
+        db.update(sql, account.getFirstname(), account.getLastname(), account.getEmail());
     }
 
     public List<Account> getAccount() {
