@@ -54,10 +54,15 @@ function getImage(manga) {
 }
 
 function formatData(manga, coverURL) {
+    const inManga = {
+        title : manga.attributes.title.en,
+        releaseYear : Number(manga.attributes.year)
+    };
+
     let print = "<div class='manga-entry'>";
     print += "<div class='image-container'><img src='" + coverURL + "'></div>";
     print += "<h2>" + manga.attributes.title.en +  "</h2>";
-    print += "<button onclick='addRead()'>Add to read</button>";
+    print += "<button onclick='addRead("+JSON.stringify(inManga)+")'>Add to read</button>";
     print += "<p>" + manga.attributes.description.en + "</p>";
     print += "</div>";
     $("#results").append(print);
@@ -138,15 +143,22 @@ function emailValidation(email) {
 }
 
 function addRead(inManga) {
-    const manga = {
-        title : inManga.attributes.title.en,
-        releaseYear : inManga.attributes.year
-    };
+    console.log(inManga);
 
-    $.post("addManga", manga, function() {
+    $.post("addManga", inManga, function (response) {
         //HER KAN JEG HA EN POST INNI SOM LEGGER TIL READ IGJEN
-    });
+        //If isloggedin så adder den til read med de verdiene
 
+        // Handle the response from the server
+        console.log("Manga added successfully:", response);
+    }).fail(function (xhr, status, error) {
+        // Handle errors
+        console.error("Error adding Manga:", error);
+    });
+}
+
+
+    /*
     $.get("getAccount", function(account) {
         $.get("getMangas", function(mangas) {
             //mangas is the List<> of mangas
@@ -165,3 +177,4 @@ function addRead(inManga) {
         });
     });
 }
+     */
