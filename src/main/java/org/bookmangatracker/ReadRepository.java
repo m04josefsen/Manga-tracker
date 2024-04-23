@@ -15,7 +15,8 @@ public class ReadRepository {
     JdbcTemplate db;
 
     public void addRead(Read read) {
-
+        String sql = "INSERT INTO Read (userid, mangaid, rating) VALUES (?, ?, ?)";
+        db.update(sql, read.getUserid(), read.getMangaid(), read.getRating());
     }
 
     public List<Read> getRead() {
