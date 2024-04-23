@@ -20,3 +20,6 @@ CREATE TABLE Read(
     FOREIGN KEY (mangaid) REFERENCES Manga(mangaid),
     PRIMARY KEY (userid, mangaid)
 );
+
+/* Midlertidig */
+INSERT INTO Account (firstname, lastname, email) VALUES ('Marco', 'Josefsen', 'm04josefsen@gmail.com');

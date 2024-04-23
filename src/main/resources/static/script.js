@@ -10,7 +10,7 @@ function search() {
 
     $.get(searchURL, function (response) {
         //Response is what comes up when searching for "title", multiple different additions can come up
-        console.log(response);
+        //console.log(response);
 
         if (response.total === 0) {
             console.log("Search is empty");
@@ -23,7 +23,7 @@ function search() {
 
             //Lists the different mangas separately when searching for "title"
             mangaData.forEach(manga => {
-                console.log(manga);
+                //console.log(manga);
 
                 //Gets the url for the image, this method also calls formatData() which formats data and puts in on screen
                 getImage(manga);
@@ -40,10 +40,10 @@ function getImage(manga) {
 
     $.get(`https://api.mangadex.org/cover/${coverID}`, function(coverResponse) {
         if(coverResponse.result === "ok") {
-            console.log("Cover filename: " + coverFilename);
+            //console.log("Cover filename: " + coverFilename);
 
             const coverURL = `https://uploads.mangadex.org/covers/${mangaId}/${coverFilename}`;
-            console.log("Cover URL: " + coverURL);
+            //console.log("Cover URL: " + coverURL);
 
             formatData(manga, coverURL);
         }
@@ -54,10 +54,15 @@ function getImage(manga) {
 }
 
 function formatData(manga, coverURL) {
+    const inManga = {
+        title : manga.attributes.title.en,
+        releaseYear : Number(manga.attributes.year)
+    };
+
     let print = "<div class='manga-entry'>";
     print += "<div class='image-container'><img src='" + coverURL + "'></div>";
     print += "<h2>" + manga.attributes.title.en +  "</h2>";
-    print += "<button onclick='addRead()'>Add to read</button>";
+    print += "<button onclick='addRead("+JSON.stringify(inManga)+")'>Add to read</button>";
     print += "<p>" + manga.attributes.description.en + "</p>";
     print += "</div>";
     $("#results").append(print);
@@ -78,19 +83,8 @@ function registerAccount() {
     emailValidation(account.email);
 
     if(inputCounter === 3) {
-        console.log(account.firstname);
-        console.log(account.lastname);
-        console.log(account.email);
-
-        console.log("break");
-
-        console.log($("#firstnameInput").val());
-        console.log($("#lastnameInput").val());
-        console.log($("#emailInput").val());
-
-        $.post("addAccount", account, function(response) {
-            // Handle the response from the server
-            console.log("Account added successfully:", response);
+        $.post("addAccount", account, function() {
+            console.log("Account added successfully");
 
 
             document.getElementById("firstnameInput").value = "";
@@ -105,7 +99,6 @@ function registerAccount() {
 
             inputCounter = 0;
         }).fail(function(xhr, status, error) {
-            // Handle errors
             console.error("Error adding account:", error);
         });
     }
@@ -138,30 +131,40 @@ function emailValidation(email) {
 }
 
 function addRead(inManga) {
-    const manga = {
-        title : inManga.attributes.title.en,
-        releaseYear : inManga.attributes.year
-    };
+    $.post("addManga", inManga, async function () {
+        console.log("Manga added successfully");
 
-    $.post("addManga", manga, function() {
-        //HER KAN JEG HA EN POST INNI SOM LEGGER TIL READ IGJEN
-    });
+        //Gets the account object and the manga list from get request
+        const account = await getAccount();
+        const mangas = await getMangas();
 
-    $.get("getAccount", function(account) {
-        $.get("getMangas", function(mangas) {
-            //mangas is the List<> of mangas
-            //m is each manga in mangas
-            for(m of mangas) {
-                if(m.attributes.title.en === manga.title) {
-                    const currentMangaid = m.mangaid;
-                    console.log(currentMangaid);
-                    const read = {
-                        userid : account.userid,
-                        mangaid : currentMangaid,
-                        rating : 0
-                    }
-                }
+        for(m of mangas) {
+            if(m.title === inManga.title && m.year === inManga.year) {
+                const read = {
+                    userid : account.userid,
+                    mangaid : m.mangaid,
+                    rating : 0.1
+                };
+
+                $.post("addRead", read, function () {
+                    console.log("Manga added to read successfully");
+                }).fail(function(xhr, status, error) {
+                    console.log("Error adding manga to read:", error);
+                })
             }
-        });
+        }
+    }).fail(function (xhr, status, error) {
+        console.error("Error adding Manga:", error);
     });
+
+}
+
+async function getAccount() {
+    const account = await $.get("getAccount");
+    return account;
+}
+
+async function getMangas() {
+    const mangas = await $.get("getMangas");
+    return mangas;
 }

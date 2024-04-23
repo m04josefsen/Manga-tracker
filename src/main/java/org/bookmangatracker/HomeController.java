@@ -26,9 +26,16 @@ public class HomeController {
     }
 
     @GetMapping("/getAccount")
+    public Account getAccount() {
+        return accountRep.getAccount();
+    }
+
+    /*
+    @GetMapping("/getAccount")
     public List<Account> getAccount() {
         return accountRep.getAccount();
     }
+     */
 
     //Manga
     @PostMapping("/addManga")
