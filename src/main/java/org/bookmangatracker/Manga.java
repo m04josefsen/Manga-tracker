@@ -1,7 +1,7 @@
 package org.bookmangatracker;
 
 public class Manga {
-    private int mangaid;
+    private Integer mangaid;
     private String title;
     private int releaseYear;
     private String imageURL;
@@ -10,7 +10,7 @@ public class Manga {
     public Manga() {
     }
 
-    public Manga(int mangaid, String title, int releaseYear, String imageURL, String description) {
+    public Manga(Integer mangaid, String title, int releaseYear, String imageURL, String description) {
         this.mangaid = mangaid;
         this.title = title;
         this.releaseYear = releaseYear;
@@ -18,11 +18,11 @@ public class Manga {
         this.description = description;
     }
 
-    public int getMangaid() {
+    public Integer getMangaid() {
         return mangaid;
     }
 
-    public void setMangaid(int mangaid) {
+    public void setMangaid(Integer mangaid) {
         this.mangaid = mangaid;
     }
 

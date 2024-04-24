@@ -49,7 +49,7 @@ public class HomeController {
     }
 
     @GetMapping("/getMangaWithID")
-    public Manga getMangaID(int id) {
+    public Manga getMangaID(Integer id) {
         return mangaRep.getMangaWithID(id);
     }
 
