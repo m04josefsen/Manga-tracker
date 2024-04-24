@@ -4,13 +4,18 @@ public class Manga {
     private int mangaid;
     private String title;
     private int releaseYear;
+    private String imageURL;
+    private String description;
 
-    public Manga(){}
+    public Manga() {
+    }
 
-    public Manga(int mangaid, String title, int releaseYear) {
+    public Manga(int mangaid, String title, int releaseYear, String imageURL, String description) {
         this.mangaid = mangaid;
         this.title = title;
         this.releaseYear = releaseYear;
+        this.imageURL = imageURL;
+        this.description = description;
     }
 
     public int getMangaid() {
@@ -36,4 +41,21 @@ public class Manga {
     public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
     }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
+

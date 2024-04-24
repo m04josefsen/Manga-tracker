@@ -14,8 +14,8 @@ public class MangaRepository {
     JdbcTemplate db;
 
     public void addManga(Manga manga) {
-        String sql = "INSERT INTO Manga (title, releaseYear) VALUES (?, ?)";
-        db.update(sql, manga.getTitle(), manga.getReleaseYear());
+        String sql = "INSERT INTO Manga (title, releaseYear, imageURL, description) VALUES (?, ?, ?, ?)";
+        db.update(sql, manga.getTitle(), manga.getReleaseYear(), manga.getImageURL(), manga.getDescription());
     }
 
     public List<Manga> getMangas() {
