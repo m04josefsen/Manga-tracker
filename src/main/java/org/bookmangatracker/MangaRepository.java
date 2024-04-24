@@ -23,4 +23,9 @@ public class MangaRepository {
         List<Manga> mangaList = db.query(sql, new BeanPropertyRowMapper(Manga.class));
         return mangaList;
     }
+
+    public Manga getMangaWithID(int id) {
+        String sql = "SELECT * FROM Manga WHERE id = ?";
+        return db.queryForObject(sql, BeanPropertyRowMapper.newInstance(Manga.class), id);
+    }
 }

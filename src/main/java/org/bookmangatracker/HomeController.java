@@ -48,10 +48,20 @@ public class HomeController {
         return mangaRep.getMangas();
     }
 
+    @GetMapping("/getMangaWithID")
+    public Manga getMangaID(int id) {
+        return mangaRep.getMangaWithID(id);
+    }
+
     //Read
     @PostMapping("/addRead")
     public void addRead(Read read) {
         readRep.addRead(read);
+    }
+
+    @GetMapping("/getRead")
+    public List<Read> getRead() {
+        return readRep.getRead();
     }
 
 }
