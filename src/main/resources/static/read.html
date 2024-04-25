@@ -5,12 +5,13 @@
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1 class="logo">Your Website</h1>
+        <div class="header-container">
+            <h1 class="logo">Manga Tracker</h1>
             <nav>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
@@ -18,12 +19,15 @@
                     <li><a href="signup.html">Sign up</a></li>
                 </ul>
             </nav>
-            <input type="text" id="searchInput" placeholder="Search...">
-            <button onclick="search()" id="search-button">Search</button>
+            <input class="form-control" type="text" id="searchInput" placeholder="Search...">
+            <button class="btn btn-primary" onclick="search()" id="search-button">Search</button>
+            <div class="user-info"></div>
         </div>
     </header>
     <main>
-
+        <button onclick="listRead()">Get read</button>
+        <div id="readMangas"></div> <br>
+        <div id="unreadMangas"></div>
     </main>
     <footer>
 

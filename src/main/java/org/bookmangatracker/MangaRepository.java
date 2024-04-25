@@ -14,13 +14,18 @@ public class MangaRepository {
     JdbcTemplate db;
 
     public void addManga(Manga manga) {
-        String sql = "INSERT INTO Manga (title, releaseYear) VALUES (?, ?)";
-        db.update(sql, manga.getTitle(), manga.getReleaseYear());
+        String sql = "INSERT INTO Manga (title, releaseYear, imageURL, description) VALUES (?, ?, ?, ?)";
+        db.update(sql, manga.getTitle(), manga.getReleaseYear(), manga.getImageURL(), manga.getDescription());
     }
 
     public List<Manga> getMangas() {
         String sql = "SELECT * FROM Manga";
         List<Manga> mangaList = db.query(sql, new BeanPropertyRowMapper(Manga.class));
         return mangaList;
+    }
+
+    public Manga getMangaWithID(Integer id) {
+        String sql = "SELECT * FROM Manga WHERE mangaid = ?";
+        return db.queryForObject(sql, BeanPropertyRowMapper.newInstance(Manga.class), id);
     }
 }
