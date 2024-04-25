@@ -105,7 +105,12 @@
     margin-top: 5px;
 }
 
-/* Sign up page */
+/* index.html */
+.carousel-item {
+    height: 40rem;
+}
 
-
-
+#manySearch {
+    display: flex;
+    flex-wrap: wrap;
+}
