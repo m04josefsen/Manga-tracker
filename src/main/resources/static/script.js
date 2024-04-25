@@ -1,6 +1,16 @@
 let inputCounter = 0;
 
+/* Fills the preview on index.html with mangas */
+$( document ).ready(function() {
+    showSlideshow();
+    listRead();
+
+    //search(); KAN KANKSJE LAGE EN DUPLICATE SEARCH UNDER SOM DA IKKE GJØR PREVIEW EMPTY SÅ JEG KAN HA SLIDESHOW SÅ SEARCHEN UNDER
+});
+
 function search() {
+    $("#preview").empty();
+
     const title = $("#searchInput").val();
 
     const baseURL = "https://api.mangadex.org";
@@ -214,4 +224,26 @@ async function getMangaWithID(id) {
 
     const manga = await $.get(url);
     return manga;
+}
+
+function showSlideshow() {
+    let print = "<div id='carouselIndicators' class='carousel slide' data-bs-ride='carousel'>";
+    print += "<ol class='carousel-indicators'>";
+    print += "<li data-bs-target='#carouselIndicators' data-bs-slide-to='0' class='active'></li>";
+    print += "<li data-bs-target='#carouselIndicators' data-bs-slide-to='1'></li>";
+    print += "</ol>";
+    print += "<div class='carousel-inner'>";
+    print += "<div class='carousel-item active'>";
+    print += "<img class='d-block w-100' src='manga1.jpg' alt='test'>";
+    print += "</div>";
+    print += "<div class='carousel-item'>";
+    print += "<img class='d-block w-100' src='manga2.jpg' alt='test'>";
+    print += "</div>";
+    print += "</div>";
+    print += "</div>";
+
+    $("#preview").html(print);
+
+    // Trigger the carousel to start sliding
+    //$('.carousel').carousel();
 }
