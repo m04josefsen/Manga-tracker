@@ -150,7 +150,7 @@ function addRead(inManga) {
 
                 $.post("addRead", read, function () {
                     console.log("Manga added to read successfully");
-                    listRead();
+                    //listRead();
 
                 }).fail(function(xhr, status, error) {
                     console.log("Error adding manga to read:", error);
@@ -170,7 +170,7 @@ function listRead() {
             getMangaWithID(read.mangaid).then(function (manga) {
                 if(read.rating != null) {
                     console.log(manga)
-                    let print = "<div class='manga-container'>";
+                    let print = "<div class='manga-entry'>";
                     print += "<div class='image-container'><img src='" + manga.imageURL + "'></div>";
                     print += "<h2 class='manga-title'>" + manga.title + " " + manga.releaseYear + "</h2>";
                     print += "<div class='manga-rating'>Rating: " + read.rating + "</div>";
@@ -180,6 +180,12 @@ function listRead() {
                     $("#readMangas").append(print);
                 }
                 else {
+                    let print = "<div class='manga-entry'>";
+                    print += "<div class='image-container'><img src='" + manga.imageURL + "'></div>";
+                    print += "<h2 class='manga-title'>" + manga.title + " " + manga.releaseYear + "</h2>";
+                    print += "<div class='manga-rating'>Rating: 0" + "</div>";
+                    print += "<p class='manga-description'>" + manga.description + "</p>";
+                    print += "</div>";
 
                     $("#unreadMangas").append(print);
                 }
