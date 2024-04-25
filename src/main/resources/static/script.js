@@ -2,6 +2,7 @@ let inputCounter = 0;
 
 /* Fills the preview on index.html with mangas */
 $( document ).ready(function() {
+    userInHeader();
     showSlideshow();
     listRead();
 
@@ -226,6 +227,15 @@ async function getMangaWithID(id) {
     return manga;
 }
 
+async function userInHeader() {
+    const account = await getAccount();
+
+    let ut = account.firstname + " " + account.lastname + "<br>";
+    ut += account.email;
+
+    $(".user-info").html(ut);
+}
+
 function showSlideshow() {
     let print = "<div id='carouselIndicators' class='carousel slide' data-bs-ride='carousel'>";
     print += "<ol class='carousel-indicators'>";
@@ -233,10 +243,11 @@ function showSlideshow() {
     print += "<li data-bs-target='#carouselIndicators' data-bs-slide-to='1'></li>";
     print += "</ol>";
     print += "<div class='carousel-inner'>";
-    print += "<div class='carousel-item active'>";
+    //TODO: Data-bs-interval funker ikke, det er BS
+    print += "<div class='carousel-item active' data-bs-interval='1000'>";
     print += "<img class='d-block w-100' src='manga1.jpg' alt='test'>";
     print += "</div>";
-    print += "<div class='carousel-item'>";
+    print += "<div class='carousel-item' data-bs-interval='1000'>";
     print += "<img class='d-block w-100' src='manga2.jpg' alt='test'>";
     print += "</div>";
     print += "</div>";
@@ -246,4 +257,8 @@ function showSlideshow() {
 
     // Trigger the carousel to start sliding
     //$('.carousel').carousel();
+}
+
+function getMangaForSlideshow() {
+
 }
