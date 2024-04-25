@@ -5,56 +5,13 @@
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .manga-entry {
-            display: inline-block;
-            width: 300px; /* Adjust as needed */
-            margin: 10px; /* Adjust spacing between entries */
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-
-        .manga-title {
-            font-size: 18px;
-            margin-top: 0;
-        }
-
-        .manga-description {
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .image-container {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .add-to-read-btn {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-    </style>
-
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1 class="logo">Your Website</h1>
+        <div class="header-container">
+            <h1 class="logo">Manga Tracker</h1>
             <nav>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
@@ -62,12 +19,14 @@
                     <li><a href="signup.html">Sign up</a></li>
                 </ul>
             </nav>
-            <input type="text" id="searchInput" placeholder="Search...">
-            <button onclick="search()" id="search-button">Search</button>
+            <input class="form-control" type="text" id="searchInput" placeholder="Search...">
+            <button class="btn btn-primary" onclick="search()" id="search-button">Search</button>
+            <div class="user-info"></div>
         </div>
     </header>
     <main>
         <div id="results"></div>
+        <div class="clear"></div>
     </main>
     <footer>
 
