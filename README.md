@@ -1,5 +1,6 @@
 # Manga Tracker
 
+(README.md is created by ChatGPT)
 Manga Tracker is a web application built with Spring Boot that allows users to track and manage their manga collections. Users can log in, add mangas to their list, and categorize them as read or unread. Additionally, users can rate the mangas they've read.
 Features
 
