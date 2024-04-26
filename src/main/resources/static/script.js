@@ -86,7 +86,8 @@ function registerAccount() {
     const account = {
         firstname : $("#firstnameInput").val(),
         lastname : $("#lastnameInput").val(),
-        email : $("#emailInput").val()
+        email : $("#emailInput").val(),
+        password : $("#passwordInput").val()
     };
 
     inputCounter = 0;
@@ -94,8 +95,9 @@ function registerAccount() {
     stringValidation(account.firstname, "firstname");
     stringValidation(account.lastname, "lastname");
     emailValidation(account.email);
+    passwordValidation(account.password);
 
-    if(inputCounter === 3) {
+    if(inputCounter === 4) {
         $.post("addAccount", account, function() {
             console.log("Account added successfully");
 
@@ -103,10 +105,12 @@ function registerAccount() {
             document.getElementById("firstnameInput").value = "";
             document.getElementById("lastnameInput").value = "";
             document.getElementById("emailInput").value = "";
+            document.getElementById("passwordInput").value = "";
 
             document.getElementById("emailError").innerHTML = "";
             document.getElementById("firstnameError").innerHTML = "";
             document.getElementById("lastnameError").innerHTML = "";
+            document.getElementById("passwordError").innerHTML = "";
 
 
 
@@ -137,6 +141,19 @@ function emailValidation(email) {
         let out = "You have to write a valid email";
         out = out.fontcolor("RED");
         document.getElementById("emailError").innerHTML = out;
+    }
+    else {
+        inputCounter++;
+    }
+}
+
+function passwordValidation(password) {
+    let passwordPattern = /^(?=.*\d)(?=.*[a-zA-ZæøåÆØÅ])(?=.*[A-ZÆØÅa-zæøå])(?=.*[!@#$%^&*()-_=+{};:,.<>?])(?!.*\s).{8,}$/;
+
+    if(!passwordPattern.test(password)) {
+        let out = "You have to write a valid password";
+        out = out.fontcolor("RED");
+        document.getElementById("passwordError").innerHTML = out;
     }
     else {
         inputCounter++;

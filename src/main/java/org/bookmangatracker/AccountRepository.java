@@ -14,8 +14,8 @@ public class AccountRepository {
     private JdbcTemplate db;
 
     public void addAccount(Account account) {
-        String sql = "INSERT INTO Account (firstname, lastname, email) VALUES (?, ?, ?)";
-        db.update(sql, account.getFirstname(), account.getLastname(), account.getEmail());
+        String sql = "INSERT INTO Account (firstname, lastname, email, password) VALUES (?, ?, ?, ?)";
+        db.update(sql, account.getFirstname(), account.getLastname(), account.getEmail(), account.getPassword());
     }
 
     public Account getAccount() {
