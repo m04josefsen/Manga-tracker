@@ -19,14 +19,6 @@ public class ReadRepository {
         db.update(sql, read.getUserid(), read.getMangaid(), 0);
     }
 
-    /*
-    public List<Read> getRead() {
-        String sql = "SELECT * FROM Read";
-        List<Read> list = db.query(sql, new BeanPropertyRowMapper(Read.class));
-        return list;
-    }
-     */
-
     public List<Read> getReadMangas() {
         String sql = "SELECT * FROM Read WHERE rating > 0 ORDER BY rating DESC";
         List<Read> list = db.query(sql, new BeanPropertyRowMapper<>(Read.class));

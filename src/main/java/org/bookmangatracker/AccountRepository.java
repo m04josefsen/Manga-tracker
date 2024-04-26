@@ -23,13 +23,4 @@ public class AccountRepository {
         Account account = db.queryForObject(sql, new BeanPropertyRowMapper<>(Account.class));
         return account;
     }
-
-    /*
-    public List<Account> getAccount() {
-        String sql = "SELECT * FROM Account LIMIT 1";
-        List<Account> accountList = db.query(sql, new BeanPropertyRowMapper(Account.class));
-        return accountList;
-    }
-     */
-
 }

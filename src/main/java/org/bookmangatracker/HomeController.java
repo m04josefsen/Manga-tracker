@@ -30,13 +30,6 @@ public class HomeController {
         return accountRep.getAccount();
     }
 
-    /*
-    @GetMapping("/getAccount")
-    public List<Account> getAccount() {
-        return accountRep.getAccount();
-    }
-     */
-
     //Manga
     @PostMapping("/addManga")
     public void addManga(Manga manga) {
@@ -58,13 +51,6 @@ public class HomeController {
     public void addRead(Read read) {
         readRep.addRead(read);
     }
-
-    /*
-    @GetMapping("/getRead")
-    public List<Read> getRead() {
-        return readRep.getRead();
-    }
-     */
 
     @GetMapping("/getReadMangas")
     public List<Read> getReadMangas() {
