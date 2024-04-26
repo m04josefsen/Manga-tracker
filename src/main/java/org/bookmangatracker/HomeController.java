@@ -59,9 +59,26 @@ public class HomeController {
         readRep.addRead(read);
     }
 
+    /*
     @GetMapping("/getRead")
     public List<Read> getRead() {
         return readRep.getRead();
+    }
+     */
+
+    @GetMapping("/getReadMangas")
+    public List<Read> getReadMangas() {
+        return readRep.getReadMangas();
+    }
+
+    @GetMapping("/getUnreadMangas")
+    public List<Read> getUnreadMangas() {
+        return readRep.getUnreadMangas();
+    }
+
+    @PostMapping("/addRating")
+    public void addRating(int mangaid, double rating) {
+        readRep.addRating(mangaid, rating);
     }
 
 }

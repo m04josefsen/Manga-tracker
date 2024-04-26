@@ -174,34 +174,47 @@ function addRead(inManga) {
 }
 
 function listRead() {
-    getRead().then(function (readList) {
+    getReadMangas().then(function(readList) {
         for(read of readList) {
-            console.log(read.mangaid)
             getMangaWithID(read.mangaid).then(function (manga) {
-                if(read.rating != null) {
-                    console.log(manga)
-                    let print = "<div class='manga-entry'>";
-                    print += "<div class='image-container'><img src='" + manga.imageURL + "'></div>";
-                    print += "<h2 class='manga-title'>" + manga.title + " " + manga.releaseYear + "</h2>";
-                    print += "<div class='manga-rating'>Rating: " + read.rating + "</div>";
-                    print += "<p class='manga-description'>" + manga.description + "</p>";
-                    print += "</div>";
+                let print = "<div class='manga-entry'>";
+                print += "<div class='image-container'><img src='" + manga.imageURL + "'></div>";
+                print += "<h2 class='manga-title'>" + manga.title + " " + manga.releaseYear + "</h2>";
+                print += "<div class='manga-rating'>Rating: " + read.rating + "</div>";
+                print += "<p class='manga-description'>" + manga.description + "</p>";
+                print += "</div>";
 
-                    $("#readMangas").append(print);
-                }
-                else {
-                    let print = "<div class='manga-entry'>";
-                    print += "<div class='image-container'><img src='" + manga.imageURL + "'></div>";
-                    print += "<h2 class='manga-title'>" + manga.title + " " + manga.releaseYear + "</h2>";
-                    print += "<div class='manga-rating'>Rating: 0" + "</div>";
-                    print += "<p class='manga-description'>" + manga.description + "</p>";
-                    print += "</div>";
+                $("#readMangas").append(print);
+            })
+        }
+    });
 
-                    $("#unreadMangas").append(print);
-                }
-            });
+    getUnreadMangas().then(function(readList) {
+        for(read of readList) {
+            getMangaWithID(read.mangaid).then(function (manga) {
+                let print = "<div class='manga-entry'>";
+                print += "<div class='image-container'><img src='" + manga.imageURL + "'></div>";
+                print += "<h2 class='manga-title'>" + manga.title + " " + manga.releaseYear + "</h2>";
+                print += "<input class='form-control rating-input' type='text' id='ratingInput' placeholder='Give rating'/>";
+                print += "<button class='btn btn-primary rating-button' onClick='giveRating("+ manga.mangaid +")' id='rating-button'>Give rating</button>";
+                print += "<p class='manga-description'>" + manga.description + "</p>";
+                print += "</div>";
+
+                $("#unreadMangas").append(print);
+            })
         }
     })
+}
+
+function giveRating(mangaid) {
+    const rating = $("#ratingInput").val();
+
+    $.post("addRating", {mangaid: mangaid, rating: rating}, function() {
+        $("#readMangas").empty();
+        $("#unreadMangas").empty();
+
+        listRead();
+    });
 }
 
 async function getAccount() {
@@ -214,8 +227,13 @@ async function getMangas() {
     return mangas;
 }
 
-async function getRead() {
-    const readList = await $.get("getRead");
+async function getReadMangas() {
+    const readList = await $.get("getReadMangas");
+    return readList;
+}
+
+async function getUnreadMangas() {
+    const readList = await $.get("getUnreadMangas");
     return readList;
 }
 
