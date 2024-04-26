@@ -52,10 +52,8 @@ The main page
 The search page
 ![The search page](/src/main/resources/screenshots/z-searchPage.png?raw=true)
 
-The read mangas
+The read page
 ![The read mangas](/src/main/resources/screenshots/z-readMangas.png?raw=true)
-
-The unread mangas
 ![The unread mangas](/src/main/resources/screenshots/z-unreadMangas.png?raw=true)
 
 The signup page
