@@ -156,7 +156,6 @@ function addRead(inManga) {
                 const read = {
                     userid : account.userid,
                     mangaid : m.mangaid,
-                    rating : 0.1
                 };
 
                 $.post("addRead", read, function () {
@@ -236,15 +235,9 @@ async function userInHeader() {
     $(".user-info").html(ut);
 }
 
-function showSlideshow(manga1, coverURL1) {
-    /*
-    const inManga = {
-        title : manga.attributes.title.en,
-        imageURL : coverURL
-    }
-       print += "<div class='image-container'><img src='" + coverURL + "'></div>";
-     */
+/* TODO: Code under here needs to be formated better or rewritten */
 
+function showSlideshow(manga1, coverURL1) {
     let print = "<div class='container'>";
     print += "<div class='row justify-content-center'>";
     print += "<div class='col-md-6'>";
