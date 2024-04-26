@@ -9,23 +9,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <h1 class="logo">Manga Tracker</h1>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="read.html">Read</a></li>
-                    <li><a href="signup.html">Sign up</a></li>
-                </ul>
-            </nav>
-            <input class="form-control" type="text" id="searchInput" placeholder="Search...">
-            <button class="btn btn-primary" onclick="search()" id="search-button">Search</button>
-            <div class="user-info"></div>
-        </div>
-    </header>
+<header>
+    <div class="header-container">
+        <h1 class="logo"><a href="index.html" class="logo">Manga Tracker</a></h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="read.html">Read</a></li>
+                <li><a href="signup.html">Sign up</a></li>
+            </ul>
+        </nav>
+        <input class="form-control" type="text" id="searchInput" placeholder="Search...">
+        <button class="btn btn-primary" onclick="search()" id="search-button">Search</button>
+        <div class="user-info"></div>
+    </div>
+</header>
     <main>
-        <div id="readMangas"></div> <br>
+        <h2>Read mangas</h2>
+        <div id="readMangas"></div>
+        <h2>Unread mangas</h2>
         <div id="unreadMangas"></div>
     </main>
     <footer>
