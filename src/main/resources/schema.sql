@@ -17,7 +17,7 @@ CREATE TABLE Manga(
 CREATE TABLE Read(
     userid INT NOT NULL,
     mangaid INT NOT NULL,
-    rating DECIMAL(3,2),
+    rating DECIMAL(3,2) NOT NULL,
     FOREIGN KEY (userid) REFERENCES Account(userid),
     FOREIGN KEY (mangaid) REFERENCES Manga(mangaid),
     PRIMARY KEY (userid, mangaid)
