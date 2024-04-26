@@ -9,6 +9,8 @@
 }
 .logo {
     margin: 0;
+    text-decoration: none;
+    color: #fff;
 }
 .nav-links {
     list-style: none;
@@ -105,12 +107,29 @@
     margin-top: 5px;
 }
 
+.rating-input {
+    margin-bottom: 10px; /* Space below rating input */
+    width: calc(70% - 10px); /* Adjust the width as needed */
+    /* This calculation ensures that the input and button have the same total width */
+}
+
+.rating-button {
+    display: inline-block; /* Make the button an inline-block element */
+    width: calc(70% - 10px); /* Adjust the width as needed */
+}
+
 /* index.html */
 .carousel-item {
     height: 40rem;
 }
 
 #manySearch {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* read.html */
+#readMangas, #unreadMangas {
     display: flex;
     flex-wrap: wrap;
 }
