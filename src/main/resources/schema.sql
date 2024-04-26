@@ -2,7 +2,8 @@ CREATE TABLE Account (
     userid INT AUTO_INCREMENT PRIMARY KEY,
     firstname VARCHAR(255) NOT NULL,
     lastname VARCHAR(255) NOT NULL,
-    email VARCHAR(320) NOT NULL UNIQUE
+    email VARCHAR(320) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Manga(
@@ -24,4 +25,4 @@ CREATE TABLE Read(
 );
 
 /* Midlertidig */
-INSERT INTO Account (firstname, lastname, email) VALUES ('Marco', 'Josefsen', 'm04josefsen@gmail.com');
+INSERT INTO Account (firstname, lastname, email, password) VALUES ('Marco', 'Josefsen', 'm04josefsen@gmail.com', 'test123');
